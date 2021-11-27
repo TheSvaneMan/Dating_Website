@@ -1,0 +1,545 @@
+/* ------------ Root Variables ----------------- */
+
+:root {
+    --white: white;
+    --user-bg: rgb(67, 203, 255);
+    --gradient: linear-gradient(0.25turn, #246ec3, #246ec3, #b124c3);
+    --shadow: rgb(0, 0, 0) 5px 5px 10px;
+    --nav-button-bg: white;
+    --button-color: rgb(103, 58, 183);
+    --nav-bg: rgb(68, 69, 87);
+    --dark-bg: rgb(33, 33, 45);
+    --darker-bg: rgb(20, 20, 32);
+    --border-radius: 10px;
+}
+
+/* ---------- scrollbar ---------- */
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: var(--white);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--nav-button-bg);
+}
+
+/* ------------- Navigation Styling Control ---------- */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    background-color: var(--nav-bg);
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    color: var(--white);
+    margin: 0 40px 0 40px;
+}
+
+a {
+    text-decoration: none;
+    padding: 10px;
+    color: var(--white);
+}
+
+/* ------------- Sign Up Page---------- */
+
+/* ---------- page styling ---------- */
+.appLogo {
+    width: 240px;
+}
+
+.page {
+    display: none;
+    /*min heigh is screen heigh minus height of tab and top bar */
+    min-height: calc(100vh - 210px);
+    background: var(--light-grey);
+    animation: fadeIn 0.4s;
+    /* padding equals height of tabbar and topbar */
+    padding: 55px 0;
+}
+
+.displayUsers {
+    margin: 40px;
+}
+
+#login {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40vw;
+    background: url('../assets/loading.gif');
+    background-repeat: repeat;
+    height: 100%;
+}
+
+#signUp {
+    padding-left: 40vw;
+    background: url('../assets/loading.gif');
+    background-repeat: repeat;
+}
+
+#about {
+    padding-left: 40vw;
+    background: url('../assets/loading.gif');
+    background-repeat: repeat;
+}
+
+.authenticationElements {
+    color: var(--white);
+    padding: 40px;
+    margin: 80px;
+    width: 480px;
+    height: 100%;
+    background: var(--darker-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.fancyInput {
+    border: none;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border-radius: var(--border-radius);
+    background-color: var(--nav-bg);
+    color: var(--white);
+}
+
+/* -----------|| Home Page Styling || ---------------- */
+
+body {
+    margin: auto 0;
+    color: var(--white);
+    background-color: var(--dark-bg);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.nav-link {
+    color: var(--white);
+    margin: 0 10px 0 10px;
+    font-size: 0.8rem;
+    background: var(--gradient);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border-style: none;
+}
+
+a.active {
+    background-color: var(--light-green);
+    color: var(--green);
+}
+
+.homeHeader {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainMenu {
+    display: grid;
+    height: 480px;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchUser {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: var(--darker-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+#home {
+    display: flex;
+    height: 100%;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4vh;
+}
+
+/* ------------- MENU ----------------- */
+
+.menuClose {
+    display: none;
+    margin: 0 auto;
+    width: 0%;
+    background: var(--darker-bg);
+}
+
+.menuOpen {
+    display: grid;
+    margin: 0 auto;
+    width: 25%;
+    background: var(--darker-bg);
+    box-shadow: var(--shadow);
+    margin-right: 10px;
+}
+
+/* ---------- MAIN -------------- */
+
+main {
+    margin: 0 auto;
+    display: grid;
+    height: 100%;
+    width: 75%;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: rgb(67, 203, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.secondary-title {
+    font-size: 1.2rem;
+    color: rgb(67, 203, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.website-description {
+    font-size: 1.4rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.profilePicture {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.user-item {
+    display: grid;
+    height: 480px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    border: var(--nav-bg) 2px solid;
+    background: var(--darker-bg);
+    color: var(--white);
+    margin: 5px;
+}
+
+.user-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+}
+
+/* ----------- INBOX / CHAT -------- */
+.inboxHeader {
+    grid-area: header;
+}
+
+.userChatMates {
+    grid-area: menu;
+}
+
+.displayMessages {
+    grid-area: main;
+}
+
+.userInbox {
+    display: grid;
+    grid-template-areas:
+        'header header header header'
+        'menu main main main'
+        'menu main main main';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.userInbox>div {
+    background-color: var(--darker-bg);
+    text-align: left;
+    padding: 40px;
+}
+
+/* -----------|| Individual Page Styling || ---------- */
+
+/* Formats entire page, allows for unique page styling */
+
+.filter-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: var(--darker-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.button {
+    color: var(--white);
+    margin: 0 10px 0 10px;
+    font-size: 0.8rem;
+    background: var(--gradient);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border-style: none;
+}
+
+.button:hover {
+    animation: color-change-background 0.4s infinite;
+    box-shadow: var(--shadow);
+}
+
+@keyframes color-change-background {
+    0% {
+        background: linear-gradient(0.25turn, #246ec3, #246ec3, #246ec3, #246ec3);
+    }
+
+    20% {
+        background: linear-gradient(0.25turn, #246ec3, #246ec3, #246ec3, #b124c3);
+    }
+
+    25% {
+        background: linear-gradient(0.25turn, #246ec3, #246ec3, #b124c3, #b124c3);
+    }
+
+    50% {
+        background: linear-gradient(0.25turn, #246ec3, #b124c3, #b124c3, #246ec3);
+    }
+
+    75% {
+        background: linear-gradient(0.25turn, #b124c3, #b124c3, #246ec3, #246ec3);
+    }
+
+    100% {
+        background: linear-gradient(0.25turn, #b124c3, #246ec3, #246ec3, #246ec3);
+    }
+}
+
+/* Selected Users gains unique styling */
+
+#user-individual {
+    display: grid;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+}
+
+#potential-matches-table {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#matches-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-basis: calc(25%);
+    border-radius: 50px;
+    margin: 20px;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+}
+
+#matches-container:hover {
+    animation: breathing-slow 02s infinite;
+}
+
+#matches-container-special {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 280px;
+    border-radius: 50px;
+    margin: 40px;
+    padding: 40px;
+    color: rgb(255, 255, 255);
+    animation: excited-colors 2s infinite;
+}
+
+#matches-container-special:hover {
+    transform: translateY(-5px);
+    background-color: #04313a;
+    box-shadow: var(--shadow);
+    animation: swivel 0.4s infinite;
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes breathing-slow {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes swivel {
+    0% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes excited-colors {
+    0% {
+        background-color: orangered;
+    }
+
+    50% {
+        background-color: #065564;
+    }
+
+    100% {
+        background-color: crimson;
+    }
+}
+
+/* -----------|| About Page Styling || ---------------- */
+
+.aboutPage {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+
+/* -----------|| Newly Coupled Partners Page Styling || ---------------- */
+
+.selected-partner-page {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.overlay {
+    background-image: url("../assets/flowers-falling.gif");
+    background-repeat: repeat;
+}
+
+/* -----------|| Footer Styling || ---------------- */
+
+.footer {
+    margin: 0 auto;
+    background-color: var(--nav-bg);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* ---------- loader styling ---------- */
+
+#loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    overflow: hidden;
+    background: var(--loader-background-color);
+    text-align: center;
+}
+
+.spinner {
+    border: 5px solid var(--light-grey);
+    border-radius: 50%;
+    border-top: 5px solid var(--light-green);
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.4s, opacity 0.4s linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

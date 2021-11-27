@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="#" />
+		<title>Match Making Website</title>
+		<link rel="stylesheet" href="../css/styles.css" />
+	</head>
+	<body>
+		<!-- Navigation  -->
+		<nav>
+			<ul>
+				<li><a class="nav-link" onclick="loadUsers()" href="#/home">Home</a></li>
+				<!-- <li><a class="nav-link" href="#/user">User/Profile</a> </li> -->
+				<li><a class="nav-link" href="#/about">About</a></li>
+				<li><a class="nav-link" href="#/matches" onclick="loadMatches()">Entangled With</a></li>
+				<li><a class="nav-link" href="#/inbox">Inbox</a></li>
+				<button class="button" onclick="loadMatches()"> Check Login Status</button>
+			</ul>
+		</nav>
+		<!-- Intro Page (Starting page) -->
+		<section id="login" class="page">
+			<!-- <img class="appLogo" src="assets/logo.png" alt="logo" /> -->
+
+			<button class="button" onclick="dataCheck()">
+				Alternative Data Control / POST
+			</button>
+			<form
+				class="authenticationElements"
+				method="POST"
+				action="backend/security.php"
+			>
+				<h2>Login</h2>
+				<p id="ServerResponse"></p>
+				<p>Welcome back, Gorgeous.</p>
+				<input
+					class="fancyInput"
+					type="text"
+					name="usernameLogin"
+					id="usernameLogin"
+					placeholder="enter username"
+				/>
+				<input
+					class="fancyInput"
+					type="text"
+					name="passwordLogin"
+					id="passwordLogin"
+					placeholder="password"
+				/>
+				<input class="button" type="submit" value="login" name="login" />
+			</form>
+			<form
+				class="authenticationElements"
+				method="POST"
+				action="backend/security.php"
+			>
+				<h2>Sign Up</h2>
+				<p>Don't have an awesome sexy account? Sign up right here.</p>
+				<input
+					class="fancyInput"
+					type="text"
+					name="usernameSignUp"
+					placeholder="enter username"
+				/>
+				<input
+					class="fancyInput"
+					type="text"
+					name="passwordSignUp"
+					placeholder="password"
+				/>
+				<input class="button" type="submit" value="signUp" name="signUp" />
+			</form>
+			<br />
+		</section>
+		<!-- Sign Up Page -->
+		<section id="signUp" class="page">
+			<button class="authenticationElements" action="">
+				<h2>Welcome, you sexy Devil</h2>
+				<p>Personal information is required to tailor your experience.</p>
+				<p>If you choose to skip this, you can still browse but functionality may be limited.</p>
+				<input
+					class="fancyInput"
+					type="text"
+					id="signUpName"
+					name="signUpName"
+					placeholder="First Name"
+				/>
+				<br />
+				<input
+					class="fancyInput"
+                    id="signUpGender"
+					type="text"
+					name="signUpGender"
+					placeholder="Gender"
+				/>
+				<br />
+				<input
+					class="fancyInput"
+                    id="signUpAge"
+					type="number"
+					name="signUpAge"
+					placeholder="Age"
+				/>
+				<br />
+				<input
+					class="fancyInput"
+                    id="signUpBirthday"
+					type="text"
+					name="signUpBirthday"
+					placeholder="Birthday"
+				/>
+				<br />
+                <input
+					class="fancyInput"
+                    id="signUpCountry"
+					type="text"
+					name="signUpCountry"
+					placeholder="Country"
+				/>
+				<br />
+				<input
+					class="fancyInput"
+                    id="signUpHobbies"
+					type="text"
+					name="signUpHobbies"
+					placeholder="Favorite Hobby"
+				/>
+				<br />
+				<input
+					class="fancyInput"
+                    id="signUpPostalCode"
+					type="number"
+					name="signUpPostalCode"
+					placeholder="Postal Code"
+				/>
+                <br>
+				<select id="signUpInterestedIn" name="signUpInterestedIn" placeholder="Interested in?">
+					<option value="m">Male</option>
+					<option value="f">Female</option>
+				</select>
+			</form>
+            	<button
+					class="button"
+					placeholder="Create Account" 
+                    onclick="createUserEvent()"
+                >Create Account</button>
+		</section>
+		<!-- Home Page -->
+		<section id="home" class="page">
+			<menu id="Menu" class="menuClose">
+				<button class="nav-link" onclick="toggleMenu()">Close Profile</button>
+				<section class="mainMenu">
+					<!-- <img class="profilePicture" width="180px" src="original/<?php $security->userSettings->GetImage($_SESSION['uniqueID']);?>" alt="Profile Picture"> -->
+					<!-- image upload -->
+					<form
+						action="backend/upload_files/upload.php"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<input class="button" type="file" name="fileToUpload" />
+						<input
+							class="button"
+							type="submit"
+							value="Upload File"
+							name="uploadPhoto"
+						/>
+
+						<!-- Upload Image -->
+						<button class="button" onclick="uploadImage()">
+							Upload Profile Picture
+						</button>
+					</form>
+					<form method="POST" action="backend/security.php">
+						<!-- Sign Out Function -->
+						<input class="button" type="submit" name="logOut" value="logOut" />
+					</form>
+				</section>
+			</menu>
+			<main>
+				<div class="homeHeader">
+					<button class="nav-link" onclick="toggleMenu()">Profile</button>
+					<h1 class="main-title">Welcome to Entanglement!</h1>
+					<h3 class="secondary-title">
+						The match making sites for enthusiast.
+					</h3>
+					<div class="website-description">
+						Play it safe and select the best fit for you using our advanced
+						filters.
+						<br />
+						Go wild and let quantum mechanics decide your fate.
+					</div>
+
+					<!-- Search -->
+					<form action="" method="GET" class="searchUser">
+						<b>Search for a potential partner</b>
+						<input
+							class="fancyInput"
+							type="text"
+							name="searchInput"
+							placeholder="search user"
+							onkeyup="search(this.value)"
+						/>
+					</form>
+					<!-- Search Results -->
+					<div id="searchResult"></div>
+
+					<button
+						id="button"
+						type="button"
+						value=""
+						class="button"
+						onclick="checkActiveUser()"
+					>
+						Check Active User
+					</button>
+					<!-- Filters -->
+					<form method="GET" class="filter-options">
+						<button
+							id="button"
+							type="button"
+							value="Male-Only"
+							class="button"
+							onclick="loadUsers()"
+						>
+							All Candidates
+						</button>
+						<button
+							id="button"
+							type="button"
+							value="Male-Only"
+							class="button"
+							onclick="maleOnly()"
+						>
+							Male Only
+						</button>
+						<button
+							id="button"
+							type="button"
+							value="Famel-Only"
+							class="button"
+							onclick="femaleOnly()"
+						>
+							Female Only
+						</button>
+						<button
+							id="button"
+							type="button"
+							value="Same-Age"
+							class="button"
+							onclick="sameAge()"
+						>
+							Same Age
+						</button>
+						<button
+							id="button"
+							type="button"
+							value="Same-Age"
+							class="button"
+							onclick="differentAge()"
+						>
+							Select Age
+						</button>
+						<input
+							class="fancyInput"
+							type="number"
+							id="selectedAge"
+							name="selectedAge"
+							placeholder="Type Age"
+						/>
+						<input
+							class="button"
+							type="submit"
+							name="randomPerson"
+							value="randomPerson"
+						/>
+					</form>
+				</div>
+				<section class="displayUsers">
+					<!-- Display all users on application  -->
+					<section id="grid-users" class="grid-container"></section>
+				</section>
+			</main>
+		</section>
+		<!-- Selected User -->
+		<section id="selectedUser" class="page">
+				<a href="#/home" onclick="loadUsers()" class="button">Back</a>
+				<section class="displayUsers">
+					<!-- Display all users on application  -->
+					<section id="selected-user" class="grid-container"></section>
+				</section>
+		</section>
+		<!-- Matched Users -->
+		<section id="matches" class="page">
+				<a href="#/home" onclick="loadUsers()" class="button">Back</a>
+				<h4>
+					All Matches
+				</h4>
+				<section class="displayMatches">
+					<!-- Display all users on application  -->
+					<section id="matched-users" class="grid-container"></section>
+				</section>
+		</section>
+		<!-- Chat / Inbox Users -->
+		<section id="inbox" class="page">
+			<div class="userInbox">
+				<div class="inboxHeader">
+					<a href="#/home" class="button">Back</a>
+					<h4>Inbox</h4>
+				</div>
+				<div class="userChatMates">
+					<h3>List of Chat Mates</h3>
+					<h3>Name</h3>
+					<h3>Status : Online OR not</h3>
+					<button onclick="openMessages()">Check Messages</button>
+				</div>
+				<div class="displayMessages">
+					<!-- Display all users on application  -->
+					<section id="user-messages" class="grid-container"></section>
+				</div>
+			</div>
+		</section>
+		<!-- About Page -->
+		<section id="about" class="page">
+			<div class="authenticationElements">
+				<a href="#/home" class="button">Back</a>
+					<h1>About</h1>
+					You have taken on the task of developing a Match Making website.
+					The functionality must include presentation of users and matching
+					conditions. Initially you have thought of a two-page solution.
+					The first page is a list of usernames. When you select a user on the
+					list you are redirected to a page that shows matching users. Examples
+					of match conditions
+					<hr />
+					Users within an age range of 2 years Users of the opposite gender You
+					are free to come up with your own conditions Decisions about layout
+					and styling are up to you.
+					<hr />
+					Requirements Code quality – use prober coding conventions (Camel Case)
+					Your own comments in the source code (programmer remarks) Apply
+					knowledge and skills from previous lessons Use JSON as storage format
+					Use PHP classes
+					<br>
+					Hand-in and deadline The assignment must be solved individually.
+					<hr />
+					<b
+						>A Zip file with all your source files must be submitted to Canvas
+						no later than 21. September 2021 at 23.59</b
+					>
+			</div>
+		</section>
+		<!-- loader  
+    <section id="loader">
+        <section class="spinner"></section>
+    </section> -->
+	<!-- Selected User -->
+		<section id="404" class="page">
+				<a href="#/home" class="button">Home</a>
+				<section id="404Panel">
+					<h1>
+						Error 404: Page not found unfortunately, check the routing again.
+					</h1>
+				</section>
+		</section>
+		<!-- Footer -->
+		<div class="footer">
+			<p>Copyright @ Penda Svane - 1st Semester Web Application 2021</p>
+		</div>
+		<!-- Router Functionality -->
+		<script src="js/router.js"></script>
+		<!-- main js file -->
+		<script src="js/app.js"></script>
+		<!-- Authication -->
+		<script src="backend/security/B_Auth.php"></script>
+	</body>
+</html>
