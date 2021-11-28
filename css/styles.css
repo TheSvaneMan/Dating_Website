@@ -125,8 +125,9 @@ a {
 
 .fancyInput {
     border: none;
-    width: 100%;
-    padding: 10px;
+    height: 72px;
+    width: 80%;
+    padding: 0 40px 0 40px;
     margin: 10px 0 10px 0;
     border-radius: var(--border-radius);
     background-color: var(--nav-bg);
@@ -327,6 +328,8 @@ main {
 
 .button {
     color: var(--white);
+    height: 72px;
+    width: 128px;
     margin: 0 10px 0 10px;
     font-size: 0.8rem;
     background: var(--gradient);
@@ -414,6 +417,26 @@ main {
     background-color: #04313a;
     box-shadow: var(--shadow);
     animation: swivel 0.4s infinite;
+}
+
+/* ------ Message Box on Matches Page ---------- */
+#chatBox{
+    display: none;
+    z-index: 5;
+    position: fixed;
+    padding: 20px;
+    right: 80px;
+    bottom: 60px;
+    width: 480px;
+    height: 360px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    background-color: var(--darker-bg);
+}
+
+.chatBoxHeader{
+    display: flex;
+    justify-content: space-between;
 }
 
 /* --- ANIMATIONS --- */

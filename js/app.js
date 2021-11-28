@@ -1,8 +1,17 @@
-	/* ---- Global Variables ---- */
-let _users = [];
+/* ---------- Required back-end Services --------- */
 const _baseUrl = 'backend/userService.php/';
 const _messageUrl = 'backend/messageSystem/B_Messages.php';
+/* ---- Global Variables ---- */
+
+// Users displays all users on the database
+let _users = [];
+// Selected User ID is the ID you select on the home page to match with
 let _selectedUserId;
+// Message User ID is used to store the ID of the person you want to message
+let _messageUserId;
+// All messages for the current User
+let _messages = [];
+// Matches stores all the matches you have.
 let _matches = [];
 
 // ========== Test Functions ==========
@@ -55,6 +64,14 @@ async function loadMatches() {
 	appendMatches(_matches);
 }
 
+async function loadMessages() {
+	const url = _messageUrl + '?action=getMessages';
+	const response = await fetch(url);
+	const data = await response.json();
+	_messages = data;
+	appendMessages(_messages);
+}
+
 // ========== Page Control ==========
 // Show Home Page
 function showUserPage() {
@@ -100,13 +117,7 @@ function appendMatches(users) {
 			<p>User Two: ${user.userTwo} </p>
 			<p>Contact initiated on ${user.matchDate}</p>
 			<p>Matched on: (Date both people confirmed)</p>
-			<input class="fancyInput"
-                    id="messageData"
-					type="text"
-					name="messageData"
-					maxlength="140"
-					placeholder="Type Message here" />
-			<button class="button" onclick="sendMessage(${user.userTwo})">Message</button>
+			<button class="button" onclick="messageUser(${user.userTwo})">Message User</button>
 			</article>
 		`;
 	}
@@ -122,7 +133,7 @@ async function showDetails(id) {
 	navigateTo('#/selectedUser');
 }
 
-// append single User
+// append single User / Potential Match
 function appendPerson(user) {
 	let htmlTemplate = '';
 	htmlTemplate += /*html*/ `
@@ -158,21 +169,57 @@ async function addMatch(selectedId) {
 	});
 }
 // ========== Inbox System ==========
+// Adds Messages to the Inbox, includes outbox and inbox
+function appendMessages(messages) {
+	console.log(messages);
+	let htmlTemplate = '';
+	for (const message of messages) {
+		htmlTemplate += /*html*/ `
+			<article class="user-item">
+				<p>Sent By: ${message.sentby} </p>
+				<p>Sent To: ${message.sentto}</p>
+				<p>Message: ${message.message} </p>
+				<p>Date sent: ${message.created}</p>
+			</article>
+		`;
+	}
+	// Filter messages into received and sent
+	document.querySelector('#user-messages').innerHTML = htmlTemplate;
+}
+
+
+function toggleChatBox() {
+	let chatBox = document.getElementById('chatBox');
+	chatBox.style.display = 'none';
+}
+
+function messageUser(id) {
+	let chatBox = document.getElementById('chatBox');
+	chatBox.style.display = 'grid';
+	_messageUserId = id;
+}
+
+function confirmReceiver() {
+	// Prints out the Receiver ID to confirm you selected the right person
+	// Debugging purposes
+	console.log(_messageUserId);
+}
+
 async function sendMessage(receiverID) {
 	// Message data collection
 	let messageData = document.getElementById('messageData').value;
 	// Message Parameters
 	const params = {
-		receiver: receiverID,
-		message: messageData
-	}
+		receiver: _messageUserId,
+		message: messageData,
+	};
 	const options = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json; charset=utf-8',
 		},
-		body: JSON.stringify(params)
-	}
+		body: JSON.stringify(params),
+	};
 
 	await fetch(_messageUrl + '?action=sendMessage', options).then((response) => {
 		let result = response.json();
@@ -317,10 +364,12 @@ async function differentAge() {
 function init() {
 	if (location.hash === '#/') {
 		showSignUpPage();
-	} else if (location.hash === '#/home'){
+	} else if (location.hash === '#/home') {
 		showUserPage();
 	} else if (location.hash === '#/matches') {
 		loadMatches();
+	} else if (location.hash === '#/inbox') {
+		loadMessages();
 	}
 }
 

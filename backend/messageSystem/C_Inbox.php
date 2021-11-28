@@ -15,6 +15,21 @@ class Inbox{
         echo "Receiver: " . $receiver;
     }
 
+    public function getMessages($userID){
+        // Call to receive all messages, sent and received
+        $sql = "SELECT * FROM messageSystem WHERE sentby = '$userID' OR sentto = '$userID'";
+        $messageData = $this->mySQL->query($sql);
+        // If the query was a success, convert to data array
+        if($messageData){
+            $messages = [];
+            while($row = $messageData->fetch_assoc()){
+                $messages[] = $row;
+            }
+        }
+        // Encode the result as JSON and return it
+        return json_encode($messages);
+    }
+
 }
 
 ?>

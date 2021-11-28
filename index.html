@@ -16,7 +16,7 @@
 				<!-- <li><a class="nav-link" href="#/user">User/Profile</a> </li> -->
 				<li><a class="nav-link" href="#/about">About</a></li>
 				<li><a class="nav-link" href="#/matches" onclick="loadMatches()">Entangled With</a></li>
-				<li><a class="nav-link" href="#/inbox">Inbox</a></li>
+				<li><a class="nav-link" onclick="loadMessages()" href="#/inbox">Inbox</a></li>
 				<button class="button" onclick="loadMatches()"> Check Login Status</button>
 			</ul>
 		</nav>
@@ -301,6 +301,26 @@
 					<!-- Display all users on application  -->
 					<section id="matched-users" class="grid-container"></section>
 				</section>
+				<section>
+					<div id="chatBox">
+						<div class="chatBoxHeader">
+							<h1>
+								Message User
+							</h1>
+							<button class="button" onclick="toggleChatBox()">Close Chat</button>
+						</div>
+						
+
+						<input class="fancyInput"
+								id="messageData"
+								type="text"
+								name="messageData"
+								maxlength="140"
+								placeholder="Type Message here" />
+						<button class="button" onclick="sendMessage()">Send Message</button>
+						<button class="button" onclick="confirmReceiver()">Confirm Receiver</button>
+					</div>
+				</section>
 		</section>
 		<!-- Chat / Inbox Users -->
 		<section id="inbox" class="page">
@@ -313,7 +333,7 @@
 					<h3>List of Chat Mates</h3>
 					<h3>Name</h3>
 					<h3>Status : Online OR not</h3>
-					<button onclick="openMessages()">Check Messages</button>
+					<button class="button" onclick="openMessages()">Check Messages</button>
 				</div>
 				<div class="displayMessages">
 					<!-- Display all users on application  -->

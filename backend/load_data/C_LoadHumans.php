@@ -24,10 +24,9 @@ class LoadHumans
         // MySQL Request for all Users
         $selectAllUsers = "SELECT * FROM humans";
         $allUsers = $this->mySQL->query($selectAllUsers);
-        // Create an array for the JSON response, and set the 'status' and 'errorCode'
-        $json = [];
         // If the query was a success, then convert all the results to a data array
         if ($allUsers) {
+            // Create an array for the JSON response, and set the 'status' and 'errorCode'
             $data = [];
             while ($row = $allUsers->fetch_assoc()) {
                 $data[] = $row;

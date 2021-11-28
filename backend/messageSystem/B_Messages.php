@@ -14,6 +14,10 @@ if(isset($_GET['action'])){
         $message = $messageData->message;
         $receiver = $messageData->receiver;
         $Inbox->sendMessage($message, $sender, $receiver);
+    } else if ($_GET['action'] == 'getMessages') {
+        $userID = $_SESSION['userInfo']['userID'];
+        $messages = $Inbox->getMessages($userID);
+        echo $messages;
     }
 }
 ?>
