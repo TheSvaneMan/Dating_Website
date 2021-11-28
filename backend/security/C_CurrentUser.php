@@ -1,5 +1,5 @@
 <?php 
-class userLoginData{
+class CurrentUserData{
     // This function is primarily used to find the logged in user 
     // to help with Session management and data persistence
     public function findLoginData($userID, $mySQL){

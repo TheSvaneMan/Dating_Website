@@ -20,7 +20,7 @@ require "user_account/C_Search.php";
 // Security Class
 require "security/C_security.php";
 // Load Users (That created account and login)
-require "security/B_LoadUsers.php";
+require "security/C_CurrentUser.php";
 // New Account
 require "security/C_NewAccount.php";
 
@@ -52,19 +52,20 @@ if (isset($_POST['login'])) {
         // Returns the current active user ID found in online DB userLogin
         // Refactor needed to have login/signup Process create new user on main DB but keep seperate db for
         // Authentication purposes
-        $id = $_SESSION['uniqueID'];
+        $id = $_SESSION['userInfo']['userID'] ;
         // Find user name of this id
-        $loginUserData = new userLoginData();
-        $loginUserData->findLoginData($id, $mySQL);
+        // $currentUser = new CurrentUserData();
+        // $currentUser->findLoginData($id, $mySQL);
+        echo $id;
     } else if ($_GET['action'] == 'createUser') {
         $newUser = json_decode(file_get_contents("php://input"));
         $userData = json_encode($newUser);
         $signUpUserData = new NewAccount($mySQL);
         $signUpUserData->AddUserToDB($newUser->Firstname, $newUser->Birthday, $newUser->Hobbies, $newUser->Country, $newUser->PostalCode, $newUser->Gender, $newUser->Age, $newUser->InterestedIn);
     } else if ($_GET['action'] == 'userStatus') {
-        if (isset($_SESSION['uniqueID'])) {
+        if (isset($_SESSION['userInfo'])) {
             // Check and update User Log Status (Check if User is logged in)
-            $PK_id = $_SESSION['uniqueID'];
+            $PK_id = $_SESSION['userInfo']['PK_id'] ;
             $checkStatus = "SELECT isLoggedIn FROM userlogin WHERE PK_id = '$PK_id'";
             $logStatusObject = $mySQL->query($checkStatus);
             $logStatus = $logStatusObject->fetch_object();

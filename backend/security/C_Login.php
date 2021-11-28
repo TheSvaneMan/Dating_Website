@@ -27,7 +27,9 @@ class LoginUser
                     // Parent array of all user info
                     if (!isset($_SESSION['userInfo'])) {
                         $_SESSION['userInfo'] = array();
+                        // PK_Id is for the login system
                         $_SESSION['userInfo']['PK_id'] = $loginID->PK_id;
+                        // User ID is for the Human db reference
                         $_SESSION['userInfo']['userID'] = $loginID->userID;
 
                     } else {

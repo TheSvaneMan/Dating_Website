@@ -293,6 +293,44 @@ main {
     grid-area: main;
 }
 
+/* Inbox */
+#user-inbox {
+    background-color: red;
+    display: grid;
+    height: 50%;
+    width: 100%;
+    margin: 10px;
+    border-radius: var(--border-radius);
+}
+
+#user-outbox {
+    background-color: blue;
+    display: grid;
+    height: 50%;
+    width: 100%;
+    margin: 10px;
+    border-radius: var(--border-radius);
+}
+
+.user-message {
+    display: grid;
+    padding: 10px;
+    margin: 10px;
+    width:100%;
+    background-color: black;
+    border-radius: var(--border-radius);
+}
+
+.messageHeader {
+    justify-content: space-evenly;
+}
+
+.messageContent {
+    padding: 4px;
+    border-radius: var(--border-radius);
+    background-color: rgb(26, 32, 65);
+}
+
 .userInbox {
     display: grid;
     grid-template-areas:
@@ -420,7 +458,7 @@ main {
 }
 
 /* ------ Message Box on Matches Page ---------- */
-#chatBox{
+#chatBox {
     display: none;
     z-index: 5;
     position: fixed;
@@ -434,7 +472,7 @@ main {
     background-color: var(--darker-bg);
 }
 
-.chatBoxHeader{
+.chatBoxHeader {
     display: flex;
     justify-content: space-between;
 }

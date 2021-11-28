@@ -17,7 +17,7 @@
 				<li><a class="nav-link" href="#/about">About</a></li>
 				<li><a class="nav-link" href="#/matches" onclick="loadMatches()">Entangled With</a></li>
 				<li><a class="nav-link" onclick="loadMessages()" href="#/inbox">Inbox</a></li>
-				<button class="button" onclick="loadMatches()"> Check Login Status</button>
+				<button class="button" onclick="checkActiveUser()">Current User</button>
 			</ul>
 		</nav>
 		<!-- Intro Page (Starting page) -->
@@ -336,8 +336,9 @@
 					<button class="button" onclick="openMessages()">Check Messages</button>
 				</div>
 				<div class="displayMessages">
-					<!-- Display all users on application  -->
-					<section id="user-messages" class="grid-container"></section>
+					<!-- Display all Messages for User  -->
+					<section id="user-inbox" class="grid-container"></section>
+					<section id="user-outbox" class="grid-container"></section>
 				</div>
 			</div>
 		</section>

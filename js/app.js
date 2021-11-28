@@ -19,8 +19,8 @@ async function checkActiveUser() {
 	const url = _security + '?action=activeUser';
 	const response = await fetch(url);
 	const data = await response.json();
-	result = data;
-	console.log(result);
+	_currentUserID = data;
+	console.log(_currentUserID);
 }
 
 async function dataCheck() {
@@ -172,19 +172,43 @@ async function addMatch(selectedId) {
 // Adds Messages to the Inbox, includes outbox and inbox
 function appendMessages(messages) {
 	console.log(messages);
-	let htmlTemplate = '';
+	let htmlTemplateOutbox = '';
+	let htmlTemplateInbox = '';
 	for (const message of messages) {
-		htmlTemplate += /*html*/ `
-			<article class="user-item">
-				<p>Sent By: ${message.sentby} </p>
-				<p>Sent To: ${message.sentto}</p>
-				<p>Message: ${message.message} </p>
-				<p>Date sent: ${message.created}</p>
-			</article>
-		`;
+		// Filter messages into received and sent
+		if (message.sentby == _currentUserID) {
+			// Outbox
+			htmlTemplateOutbox += /*html*/ `
+				<li class="user-message">
+					<div class="messageHeader">	
+						<p>From: ${message.sentby} </p>
+						<p>To: ${message.sentto}</p>
+					</div>
+					<div class="messageContent">
+						<p>${message.message} </p>
+						<p>Date sent: ${message.created}</p>
+					</div>
+				</li>
+			`;
+		} else if (message.sentto == _currentUserID){
+			// Inbox
+			htmlTemplateInbox += /*html*/ `
+				<li class="user-message">
+					<div class="messageHeader">	
+						<p>From: ${message.sentby} </p>
+						<p>To: ${message.sentto}</p>
+					</div>
+					<div class="messageContent">
+						<p>${message.message} </p>
+						<p>Date sent: ${message.created}</p>
+					</div>
+				</li>
+			`;
+		}
 	}
-	// Filter messages into received and sent
-	document.querySelector('#user-messages').innerHTML = htmlTemplate;
+	
+	document.querySelector('#user-inbox').innerHTML = htmlTemplateInbox;
+	document.querySelector('#user-outbox').innerHTML = htmlTemplateOutbox;
 }
 
 
@@ -362,6 +386,7 @@ async function differentAge() {
 
 // ========== INIT APP ==========
 function init() {
+	checkActiveUser();
 	if (location.hash === '#/') {
 		showSignUpPage();
 	} else if (location.hash === '#/home') {
